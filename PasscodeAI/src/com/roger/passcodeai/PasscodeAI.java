@@ -1,8 +1,10 @@
 
 package com.roger.passcodeai;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 
 public class PasscodeAI extends Activity {
@@ -11,6 +13,18 @@ public class PasscodeAI extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                Log.d("Debug", "doInBackground");
+                IngressIntel intel = new IngressIntel(getApplicationContext(), "", "");
+                intel.login();
+                return null;
+            }
+
+        }.execute();
     }
 
     @Override
